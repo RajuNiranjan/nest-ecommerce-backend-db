@@ -1,0 +1,34 @@
+@import '../../styles/Responsive.scss';
+
+.cart {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+  padding: 20px 2rem;
+
+  @include sm {
+    flex-direction: column;
+  }
+
+  .cart-left {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    @include sm {
+      width: 100%;
+    }
+  }
+
+  .cart-right {
+    width: 25%;
+    position: sticky;
+    top: 80px;
+
+    @include sm {
+      width: 100%;
+    }
+  }
+}

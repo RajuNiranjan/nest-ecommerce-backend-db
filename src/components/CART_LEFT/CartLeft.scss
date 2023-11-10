@@ -1,0 +1,262 @@
+@import '../../styles/Responsive.scss';
+
+
+.cartLeft {
+  width: 100%;
+  background: #333;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+
+  .cartLeft-top {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+
+    @include sm {
+      flex-direction: column;
+    }
+
+    .cartLeft-top-img-container {
+      width: 25%;
+
+      @include sm {
+        width: 100%;
+      }
+
+      .cartLeft-top-img {
+        max-width: 100%;
+        max-height: 100%;
+
+        @include sm {
+          width: 100%;
+        }
+      }
+    }
+
+    .cartLeft-top-info-container {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      width: 50%;
+      color: #888;
+
+      .cartLeft-top-info-container-top {
+        @include sm {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          font-size: 12px;
+          width: 100%;
+        }
+      }
+
+      @include sm {
+        display: flex;
+        width: 100%;
+      }
+
+      .cartLeft-top-info-container-bottom {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        font-size: 18px;
+        letter-spacing: 1px;
+
+        @include sm {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          width: 100%;
+        }
+
+
+        .cartLeft-top-info-container-bottom-off-cost {
+          font-weight: 600;
+          font-size: 14px;
+          text-decoration: line-through;
+
+          @include sm {
+            font-size: 10px;
+          }
+        }
+
+        .cartLeft-top-info-container-bottom-org-cost {
+          font-size: 18px;
+          font-weight: 600;
+
+          @include sm {
+            font-size: 14px;
+          }
+        }
+
+        .cartLeft-top-info-container-bottom-dis-cost {
+          text-transform: capitalize;
+          color: yellowgreen;
+          font-size: 14px;
+
+          @include sm {
+            width: 100%;
+            font-size: 10px;
+          }
+        }
+
+        .cartLeft-top-info-container-bottom-offers {
+          display: flex;
+          width: 100%;
+          text-transform: capitalize;
+          color: yellowgreen;
+          font-size: 14px;
+
+          @include sm {
+            width: 100%;
+            font-size: 8px;
+            display: none;
+          }
+        }
+      }
+    }
+
+    .cartLeft-top-delvery-container {
+      width: 25%;
+      color: #888;
+      display: flex;
+      font-size: 14px;
+      align-items: center;
+      gap: 10px;
+
+      @include sm {
+        width: 100%;
+        font-size: 10px;
+      }
+
+      .cartLeft-top-delvery-free {
+        display: flex;
+        gap: 10px;
+        color: rgba(255, 0, 0, 0.49);
+
+        @include sm {
+          font-size: 14px;
+        }
+
+        .cartLeft-top-delvery-free-cost {
+          text-decoration: line-through;
+        }
+      }
+
+
+    }
+  }
+
+  .cartLeft-center {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    @include sm {
+      width: 100%;
+    }
+
+
+    .cartLeft-center-counter {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      @include sm {
+        gap: 10px;
+      }
+
+      .cartLeft-center-counter-decress-btn {
+        height: 30px;
+        width: 30px;
+        font-size: 22px;
+        font-weight: 600;
+        border-radius: 50%;
+        border: 0;
+        outline: 0;
+
+        @include sm {
+          height: 20px;
+          width: 20px;
+          font-size: 16px;
+        }
+      }
+
+      .cartLeft-center-counter-num {
+        width: 55px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        color: #fff;
+        border: 1px solid #8884;
+
+        @include sm {
+          font-size: 14px;
+          height: 25px;
+          width: 25px;
+        }
+      }
+
+      .cartLeft-center-counter-incress-btn {
+        height: 30px;
+        width: 30px;
+        font-size: 22px;
+        font-weight: 600;
+        border-radius: 50%;
+        border: 0;
+        outline: 0;
+
+        @include sm {
+          height: 20px;
+          width: 20px;
+          font-size: 16px;
+        }
+      }
+    }
+
+    .cartLeft-center-save-later-text {
+      text-transform: capitalize;
+      cursor: pointer;
+      color: yellowgreen;
+      letter-spacing: 1px;
+
+      @include sm {
+        display: none;
+      }
+    }
+
+    .cartLeft-center-remove {
+      text-transform: capitalize;
+      cursor: pointer;
+      color: yellowgreen;
+      letter-spacing: 1px;
+
+      &:hover {
+        color: red;
+      }
+    }
+  }
+
+  .cartLeft-bottom {
+    width: 100%;
+
+    .cartLeft-bottom-placeOrder-btn {
+      width: 150px;
+      height: 30px;
+      border: 0;
+      outline: 0;
+      text-transform: capitalize;
+      font-weight: 600;
+      letter-spacing: 1px;
+      background: yellowgreen;
+      font-size: 16px;
+      border-radius: 3px;
+    }
+  }
+}
