@@ -66,4 +66,17 @@ export class ProductsService {
       throw new UnauthorizedException(error);
     }
   }
+
+  async deleteProduct(id: string): Promise<Products> {
+    try {
+      const product = await this.productModel.findById(id);
+      if (!product) {
+        throw new UnauthorizedException('item not found');
+      }
+      return await this.productModel.findByIdAndDelete(id);
+    } catch (error) {
+      console.log(error);
+      throw new UnauthorizedException(error);
+    }
+  }
 }
