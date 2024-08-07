@@ -4,6 +4,7 @@ import { Products } from './schema/products.schema';
 import { Model } from 'mongoose';
 import { CreateProductDto } from './dto/createProduct.dto';
 import { UpdateProductDto } from './dto/updateProduct.dto';
+import { Query } from 'express-serve-static-core';
 
 @Injectable()
 export class ProductsService {
@@ -66,6 +67,17 @@ export class ProductsService {
       console.log(error);
       throw new UnauthorizedException(error);
     }
+  }
+  async productSearchQuery(qurey: Query): Promise<Products[]> {
+    const productName = qurey.keyword
+      ? {
+          name: {
+            $regex: qurey.keyword,
+            $options: 'i',
+          },
+        }
+      : {};
+    return await this.productModel.find(productName);
   }
 
   async updateProduct(
