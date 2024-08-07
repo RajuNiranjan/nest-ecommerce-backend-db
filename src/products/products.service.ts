@@ -49,4 +49,8 @@ export class ProductsService {
       throw new UnauthorizedException(error);
     }
   }
+
+  async getAllProducts(): Promise<Products[]> {
+    return await this.productModel.find();
+  }
 }
