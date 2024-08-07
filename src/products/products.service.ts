@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Products } from './schema/products.schema';
 import { Model } from 'mongoose';
 import { CreateProductDto } from './dto/createProduct.dto';
+import { UpdateProductDto } from './dto/updateProduct.dto';
 
 @Injectable()
 export class ProductsService {
@@ -60,6 +61,52 @@ export class ProductsService {
       if (!product) {
         throw new UnauthorizedException('item not found');
       }
+      return product;
+    } catch (error) {
+      console.log(error);
+      throw new UnauthorizedException(error);
+    }
+  }
+
+  async updateProduct(
+    id: string,
+    updateProductDto: UpdateProductDto,
+  ): Promise<Products> {
+    const product = await this.productModel.findById(id);
+
+    if (!product) {
+      throw new UnauthorizedException('item not found');
+    }
+
+    const {
+      name,
+      description,
+      offerPrice,
+      originalPrice,
+      imageUrl,
+      sizes,
+      material,
+    } = updateProductDto;
+
+    if (
+      !name ||
+      !description ||
+      !originalPrice ||
+      !offerPrice ||
+      !sizes ||
+      !imageUrl ||
+      !material
+    ) {
+      throw new UnauthorizedException('All fields are required');
+    }
+
+    try {
+      const updateProduct = await this.productModel.findByIdAndUpdate(
+        id,
+        updateProductDto,
+        { new: true },
+      );
+
       return product;
     } catch (error) {
       console.log(error);
