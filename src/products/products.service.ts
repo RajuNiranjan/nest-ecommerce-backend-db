@@ -53,4 +53,17 @@ export class ProductsService {
   async getAllProducts(): Promise<Products[]> {
     return await this.productModel.find();
   }
+
+  async getProductById(id: string): Promise<Products> {
+    try {
+      const product = await this.productModel.findById(id);
+      if (!product) {
+        throw new UnauthorizedException('item not found');
+      }
+      return product;
+    } catch (error) {
+      console.log(error);
+      throw new UnauthorizedException(error);
+    }
+  }
 }
