@@ -2,6 +2,8 @@ import {
   BadRequestException,
   ConflictException,
   Injectable,
+  NotFoundException,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Auth } from './schema/auth.schema';
@@ -9,6 +11,7 @@ import { Model } from 'mongoose';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { AuthRegisterDto } from './dto/register.dto';
+import { AuthLogInDto } from './dto/logIn.dto';
 
 @Injectable()
 export class AuthService {
@@ -50,6 +53,38 @@ export class AuthService {
     const token = this.jwtService.sign({ id: newUser._id });
 
     const userObj = newUser.toObject();
+    delete userObj.password;
+
+    return { token, user: userObj };
+  }
+
+  async logIn(
+    logInDto: AuthLogInDto,
+  ): Promise<{ token: string; user: Partial<Auth> }> {
+    const { email, password, userName } = logInDto;
+
+    if ((!email && !userName) || !password) {
+      throw new NotFoundException('All fields are required');
+    }
+
+    const user = await this.AuthModel.findOne({
+      $or: [{ email }, { userName }],
+    });
+
+    if (!user) {
+      throw new NotFoundException('user not found');
+    }
+
+    const verifyPassword = bcrypt.compareSync(password, user.password);
+
+    if (!verifyPassword) {
+      throw new UnauthorizedException('invalid email or password');
+    }
+
+    const token = this.jwtService.sign({ id: user._id });
+
+    const userObj = user.toObject();
+
     delete userObj.password;
 
     return { token, user: userObj };
