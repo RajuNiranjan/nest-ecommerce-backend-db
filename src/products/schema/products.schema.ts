@@ -29,6 +29,9 @@ export class Products {
 
   @Prop({ default: false })
   isOnSale: boolean;
+
+  @Prop({ required: true })
+  userId: string;
 }
 
 export const ProductsSchema = SchemaFactory.createForClass(Products);

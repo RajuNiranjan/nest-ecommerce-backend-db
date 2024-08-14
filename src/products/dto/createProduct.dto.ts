@@ -42,4 +42,8 @@ export class CreateProductDto {
   @IsNotEmpty()
   @IsBoolean()
   readonly isOnSale: boolean;
+
+  @IsNotEmpty()
+  @IsString()
+  readonly userId: string;
 }
