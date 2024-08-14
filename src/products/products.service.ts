@@ -31,4 +31,12 @@ export class ProductsService {
     const products = await this.productModel.find();
     return products;
   }
+
+  async deleteProduct(id: string): Promise<Products> {
+    const product = await this.productModel.findByIdAndDelete(id);
+    if (!product) {
+      throw new BadRequestException('Product not found.');
+    }
+    return product;
+  }
 }
