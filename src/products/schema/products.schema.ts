@@ -21,8 +21,8 @@ export class Products {
   @Prop({ required: true })
   images: string[];
 
-  @Prop({ required: true, enum: Object.values(Size) })
-  size: string;
+  @Prop({ required: true, enum: Object.values(Size), type: [String] })
+  size: string[];
 
   @Prop({ required: true, enum: Object.values(Type) })
   type: string;

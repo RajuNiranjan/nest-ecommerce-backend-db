@@ -31,8 +31,9 @@ export class CreateProductDto {
   readonly images: string[];
 
   @IsNotEmpty()
-  @IsEnum(Size)
-  readonly size: Size;
+  @IsArray()
+  @IsEnum(Size, { each: true })
+  readonly size: Size[];
 
   @IsNotEmpty()
   @IsEnum(Type)

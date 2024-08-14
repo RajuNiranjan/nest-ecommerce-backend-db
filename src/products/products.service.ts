@@ -39,6 +39,21 @@ export class ProductsService {
     return product;
   }
 
+  async updateProduct(
+    id: string,
+    updateProductDto: CreateProductDto,
+  ): Promise<Products> {
+    const product = await this.productModel.findByIdAndUpdate(
+      id,
+      updateProductDto,
+      { new: true },
+    );
+    if (!product) {
+      throw new BadRequestException('Product not found.');
+    }
+    return product;
+  }
+
   async deleteProduct(id: string): Promise<Products> {
     const product = await this.productModel.findByIdAndDelete(id);
     if (!product) {
