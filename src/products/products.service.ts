@@ -16,7 +16,6 @@ export class ProductsService {
     if (!createProductDto) {
       throw new BadRequestException('All fields are required.');
     }
-
     try {
       const newProduct = await this.productModel.create(createProductDto);
       return { product: newProduct };
@@ -26,5 +25,10 @@ export class ProductsService {
         'Failed to create product, please check the provided data.',
       );
     }
+  }
+
+  async getAllProducts(): Promise<Products[]> {
+    const products = await this.productModel.find();
+    return products;
   }
 }
