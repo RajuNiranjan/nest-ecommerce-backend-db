@@ -1,13 +1,12 @@
 export enum Size {
-  Small = 'S',
-  Medium = 'M',
-  Large = 'L',
-  ExtraLarge = 'XL',
-  DoubleExtraLarge = 'XXL',
+  S = 'S',
+  M = 'M',
+  L = 'L',
+  XL = 'XL',
+  XXL = 'XXL',
 }
-
 export enum Type {
-  TShirt = 'T-Shirt',
-  Shirt = 'Shirt',
-  Pant = 'PANT',
+  TSHIRT = 'T-SHIRT',
+  SHIRT = 'SHIRT',
+  PANT = 'PANT',
 }
