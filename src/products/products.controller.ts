@@ -6,10 +6,12 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/createProduct.dto';
 import { Products } from './schema/products.schema';
+import { Query as ExpressQuery } from 'express-serve-static-core';
 
 @Controller('products')
 export class ProductsController {
@@ -23,8 +25,8 @@ export class ProductsController {
   }
 
   @Get()
-  getAllProducts(): Promise<Products[]> {
-    return this.productServie.getAllProducts();
+  getAllProducts(@Query() query: ExpressQuery): Promise<Products[]> {
+    return this.productServie.getAllProducts(query);
   }
 
   @Get(':id')

@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Products } from './schema/products.schema';
 import { Model } from 'mongoose';
 import { CreateProductDto } from './dto/createProduct.dto';
+import { Query } from 'express-serve-static-core';
 
 @Injectable()
 export class ProductsService {
@@ -27,8 +28,17 @@ export class ProductsService {
     }
   }
 
-  async getAllProducts(): Promise<Products[]> {
-    return await this.productModel.find().exec();
+  async getAllProducts(query: Query): Promise<Products[]> {
+    const keyword = query.keyword
+      ? {
+          name: {
+            $regex: query.keyword,
+            $options: 'i',
+          },
+        }
+      : {};
+
+    return await this.productModel.find(keyword).exec();
   }
 
   async getProduct(id: string): Promise<Products> {
