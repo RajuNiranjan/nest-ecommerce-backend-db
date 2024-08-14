@@ -19,6 +19,11 @@ export class ProductsController {
     return this.productServie.getAllProducts();
   }
 
+  @Get(':id')
+  getProduct(@Param('id') id: string): Promise<Products> {
+    return this.productServie.getProduct(id);
+  }
+
   @Delete(':id')
   deleteProduct(@Param('id') id: string): Promise<Products> {
     return this.productServie.deleteProduct(id);

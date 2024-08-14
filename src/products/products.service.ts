@@ -28,8 +28,15 @@ export class ProductsService {
   }
 
   async getAllProducts(): Promise<Products[]> {
-    const products = await this.productModel.find();
-    return products;
+    return await this.productModel.find().exec();
+  }
+
+  async getProduct(id: string): Promise<Products> {
+    const product = await this.productModel.findById(id);
+    if (!product) {
+      throw new BadRequestException('Product not found.');
+    }
+    return product;
   }
 
   async deleteProduct(id: string): Promise<Products> {
